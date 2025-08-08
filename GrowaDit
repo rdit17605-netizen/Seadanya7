@@ -1,0 +1,80 @@
+rerollPredictions()
+           Rayfield:Notify({
+               Title = "Rerolled",
+               Content = "Pet predictions have been rerolled!",
+               Duration = 2,
+               Image = 4483346149,
+           })
+       else
+           Rayfield:Notify({
+               Title = "Enable Visuals First",
+               Content = "Please enable Pet Egg Visuals first!",
+               Duration = 3,
+               Image = 4483346149,
+           })
+       end
+   end,
+})
+
+local AutoRerollToggle = EggTab:CreateToggle({
+   Name = "Auto Reroll",
+   CurrentValue = false,
+   Flag = "AutoRerollToggle",
+   Callback = function(Value)
+       AutoRerollEnabled = Value
+       handleAutoReroll()
+   end,
+})
+
+local RerollSpeedSlider = EggTab:CreateSlider({
+   Name = "Auto Reroll Speed",
+   Range = {0, 10},
+   Increment = 1,
+   Suffix = " (0.5s)",
+   CurrentValue = 1,
+   Flag = "RerollSpeedSlider",
+   Callback = function(Value)
+       RerollSpeed = Value * 0.5
+       if Value == 0 then RerollSpeed = 0.25 end
+       if AutoRerollEnabled then handleAutoReroll() end
+   end,
+})
+
+local SelectedPetInput = EggTab:CreateInput({
+   Name = "Selected Pet (Case Sensitive)",
+   PlaceholderText = "Enter pet name here...",
+   RemoveTextAfterFocusLost = false,
+   Flag = "SelectedPetInput",
+   Callback = function(Text)
+       SelectedPet = Text
+       PausedEggs = {}
+   end,
+})
+
+local ShowPetsButton = EggTab:CreateButton({
+   Name = "Show Available Pets",
+   Callback = function()
+       if VisualsEnabled and next(EggVisuals) then
+           showAvailablePets()
+       else
+           Rayfield:Notify({
+               Title = "Enable Visuals First",
+               Content = "Please enable Pet Egg Visuals first!",
+               Duration = 3,
+               Image = 4483346149,
+           })
+       end
+   end,
+})
+
+local InfoSection = EggTab:CreateSection("How to Use")
+
+EggTab:CreateParagraph({
+    Title = "Instructions",
+    Content = "1. Enable Pet Egg Visuals to see red highlights on your eggs\n2. Use Reroll to change predictions\n3. Enter a pet name to auto-pause when found\n4. Auto Reroll will continuously change predictions\n5. Show Available Pets displays all possible pets from your eggs"
+})
+
+EggTab:CreateParagraph({
+    Title = "Credits",
+    Content = "Egg ESP by KenriScripts\nPet Egg Predictor Script for Grow A Garden"
+})

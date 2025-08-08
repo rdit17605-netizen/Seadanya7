@@ -1,0 +1,29 @@
+local Spawner =
+
+loadstring(game: HttpGet("https://codeberg.org/GrowAFilipino /GrowAGarden/raw/branch/main /Spawner.lua"))()
+
+Spawner.GetPets() Returns a
+
+table of supported pets
+
+Spawner.GetSeeds() Returns a
+
+table of supported seeds
+
+Returns a Spawner.GetEggs()
+
+table of supported eggs
+
+Spawner. SpawnPet("Raccoon", 1, 2)
+
+Spawns a Raccoon with 1 KG and 2 Age
+
+Spawner.Spawn Seed ("Candy Blossom") Spawns Candy Blossom
+
+Spawner.SpawnEgg("Night Egg")
+
+Spawns Night Egg
+
+Spawner. Spin("Sunflower") Sunflower Spins
+
+Spawner. Load() Default UI Loads the
